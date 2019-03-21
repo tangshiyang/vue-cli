@@ -176,3 +176,218 @@
 
     console.log(celv('A', 30000))
 })()
+
+/**
+ * 策略模式在表单验证中应用
+ */
+(function() {
+    let strages = {
+        isNotEmpty: function(value, errorMsg) {
+            if(value === '' ) {
+                return errorMsg
+            }
+        },
+        validMobile: function(value, errorMsg) {
+            if(!/^1\d{10}$/.test(value)) {
+                return errorMsg
+            }
+        }
+    }
+
+    let Validator = function() {
+        this.cache = []
+        this.add = function(dom, rule, errorMsg) {
+            this.cache.push(function() {
+                strages[rule].call(dom, dom.value, errorMsg)
+            })
+        }
+        this.start = function() {
+            let errorMsg
+            for(let i=0,len=this.cache.length;i<len;i++) {
+                if(this.cache[i]()) {
+                    errorMsg = this.cache[i]()
+                    return
+                }
+            }
+            return errorMsg
+        }
+    }
+
+    let validatorFun = function(form) {
+        let validator = new Validator()
+        // 这里添加规则
+        validator.add(form.userName, 'isNotEmpty', '用户名不能为空')
+        validator.add(form.mobile, 'validMobile', '请填写正确的手机号')
+        validator.add(form.address, 'isNotEmpty', '地址不能为空')
+        return validator.start()
+    }
+
+    let registerForm = document.getElementById('registerForm')
+    registerForm.onsubmit = function() {
+        let errorMsg = validatorFun(registerForm)
+        if(errorMsg) {
+            alert(errorMsg)
+            return
+        }
+        // 下面是校验通过的代码
+    }
+
+})()
+
+/**
+ * 发布-订阅模式（观察者模式）
+ * vue组件通信中的bus就是观察者
+ */
+(function() {
+    // 封装成一个对象
+    let Event = (function() {
+        let list = {}, listen, trigger, remove
+
+        listen = function(key, fn) {
+            if(!list[key]) {
+                list[key] = []
+            }
+            list[key].push(fn)
+        }
+        trigger = function() {
+            let key = Array.prototype.shift.apply(arguments)
+            let fns = list[key]
+            if(!fns || fns.length === 0) {
+                return false
+            }
+            fns.forEach(fn => {
+                fn.apply(this,arguments)
+            })
+        }
+        remove = function(key, fn) {
+            let fns = list[key]
+            if(!list[key]) {
+                return false
+            }
+            if(!fn) {
+                fns && (fns.length = 0)
+            }
+            fns.forEach((_fn, index) => {
+                if(_fn === fn) {
+                    list.splice(index,1)
+                }
+            })
+        }
+
+        return {
+            listen,
+            trigger,
+            remove
+        }
+    })()
+
+    // 使得响应对象有发布和订阅功能
+    for(let i in Event){
+        window[i] = Event[i]
+    }
+
+    window.listen('tip',fn1 = function(msg) {
+        alert(msg)
+    })
+
+    // window.remove('tip', fn1)
+
+    document.addEventListener('click',function() {
+        window.trigger('tip', '你好')
+    })
+})()
+
+/**
+ * 装饰者模式
+ */
+(function() {
+    Function.prototype.after = function(fn) {
+        let _self = this
+        return function() {
+            let ret = _self.apply(this, arguments)
+            fn.apply(this, arguments)
+            return ret
+        }
+    }
+
+    let showTip = function() {
+        console.log('showTip:',this)
+    }
+
+    let log = function() {
+        console.log('log:',this)
+    }
+
+    showTip = showTip.after(log)
+
+    document.onclick = showTip
+})()
+
+/**
+ * 迭代器模式
+ */
+(function() {
+    let arr = [9,4,8,5]
+    Array.prototype.kanEvery = function(fn) {
+        for(let i = 0,len = this.length;i < len; i++) {
+            let item = this[i]
+            let index = i
+            fn.call(this, item, index)
+        }
+    }
+    arr.kanEvery(function(item, index) {
+        console.log(item,index);
+    })
+})()
+
+/**
+ * 适配器模式
+ */
+(function() {
+    var googleMap = { 
+        show: function(){
+            console.log( '开始渲染谷歌地图' ); 
+        }
+    };
+    var baiduMap = {
+        display: function(){
+            console.log( '开始渲染百度地图' ); 
+        }
+    };
+    var baiduMapAdapter = { 
+        show: function(){
+            return baiduMap.display();
+        } 
+    };
+    renderMap( googleMap ); // 输出:开始渲染谷歌地图
+    renderMap( baiduMapAdapter ); // 输出:开始渲染百度地图
+})()
+
+/**
+ * vue通信方式：
+ * 1.bus（小项目，非父子组件间）
+ * 2.vuex（大项目，非父子组件间）
+ * 3.props和emit（父子组件）
+ * 4.router路由query
+ * 5.storage
+ */
+
+
+ /**
+  * 字符串常用方法和正则
+  */
+
+  /**
+   * 圣杯布局
+   *   <style>
+    .container{padding:0 220px 0 200px;}
+    .middle,.left,.right{
+        position:relative;
+        float: left;
+        min-height: 300px;
+    }
+    .middle{background-color: red;width:100%;}
+    .left{width:200px;background-color: yellow;margin-left:-100%;left:-200px;}
+    .right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
+    </style>
+   */
