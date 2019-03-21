@@ -391,3 +391,8 @@
     .right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
     </style>
    */
+
+
+   /**
+    * flex布局
+    */
