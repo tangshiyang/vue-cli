@@ -84,7 +84,12 @@
 })()
 
 /**
- * 虚拟代理http合并请求,比如按钮延迟响应，较少服务器压力
+ * 防抖与节流:
+ * 防抖是将多次执行变为最后一次执行（比如搜索框），节流是将多次执行变为在规定时间内只执行一次（比如滚动加载）
+ */
+
+/**
+ * 虚拟代理http合并请求,比如按钮延迟响应，较少服务器压力（防抖）
  */
 (function() {
     let createButton = function() {
@@ -103,6 +108,33 @@
             instance = setTimeout(function() {
                 fn.apply(this,arguments)
             },2000)
+        }
+    }
+    createButton()
+})()
+
+/**
+ * 虚拟代理http合并请求,比如按钮延迟响应，较少服务器压力（节流）
+ */
+(function() {
+    let createButton = function() {
+        document.addEventListener('click',proxyHttp(ajaxFn))
+    }
+
+    let ajaxFn = function() {
+        // ajax
+        console.log('jjj')
+    }
+
+    let proxyHttp = function(fn) {
+        let instance = null
+        return function() {
+            if(!instance) {
+                instance = setTimeout(function() {
+                    instance = null
+                    fn.apply(this,arguments)
+                },2000)
+            }
         }
     }
     createButton()
@@ -404,3 +436,24 @@
     /**
      * git reset revert
      */
+
+     /**
+      * 高阶函数性能：
+      * https://juejin.im/entry/5815876c8ac247004fb6d132
+      */
+
+     /**
+      * xss和csrf攻击
+      */
+
+      /**
+       * http1.0和http2.0
+       */
+
+       /**
+        * 状态码
+        */
+
+        /**
+         * mvc/mvp/mvvm
+         */
