@@ -386,7 +386,7 @@
             console.log( '开始渲染百度地图' ); 
         }
     };
-    var baiduMapAdapter = { 
+    var baiduMapAdapter = {
         show: function(){
             return baiduMap.display();
         } 
@@ -405,84 +405,88 @@
  */
 
 
- /**
-  * 字符串常用方法和正则
-  */
+/**
+ * 字符串常用方法和正则
+ */
 
-  /**
-   * 圣杯布局
-   *   <style>
-    .container{padding:0 220px 0 200px;}
-    .middle,.left,.right{
-        position:relative;
-        float: left;
-        min-height: 300px;
-    }
-    .middle{background-color: red;width:100%;}
-    .left{width:200px;background-color: yellow;margin-left:-100%;left:-200px;}
-    .right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
-    </style>
-   */
-
-
-   /**
-    * flex布局
-    */
-
-   /**
-    * 柯里化
-    */
-
-    /**
-     * git reset revert
-     */
-
-     /**
-      * 高阶函数性能：
-      * https://juejin.im/entry/5815876c8ac247004fb6d132
-      */
-
-     /**
-      * xss和csrf攻击
-      */
-
-      /**
-       * http1.0和http2.0
-       * SSL/TLS增加安全性
-       */
-
-       /**
-        * 状态码
-        */
-
-        /**
-         * mvc/mvp/mvvm
-         */
+/**
+ * 圣杯布局
+ *   <style>
+.container{padding:0 220px 0 200px;}
+.middle,.left,.right{
+position:relative;
+float: left;
+min-height: 300px;
+}
+.middle{background-color: red;width:100%;}
+.left{width:200px;background-color: yellow;margin-left:-100%;left:-200px;}
+.right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
+</style>
+*/
 
 
-         /**
-          * this指针问题
-          * 箭头函数中的this指向的是外层代码块中的this；而不是指向定义函数所在的对象
-          * 绑定优先级：
-          * new绑定 > 硬绑定（call/apply/bind） > 隐式绑定（obj.fn()） > 默认绑定（window）
-          */
+/**
+* flex布局
+*/
 
-          /**
-           * 主线程/微队列/宏队列
-           */
+/**
+* 柯里化
+*/
 
-           /**
-            * es6
-            */
+/**
+ * git reset revert
+ */
 
-            /**
-             * websocket
-             */
+/**
+ * 高阶函数性能：
+ * https://juejin.im/entry/5815876c8ac247004fb6d132
+ */
 
-             /**
-              * 请求优化：
-              * 1.考虑http2.0(多路复用，header头压缩，服务端推送文件，请求优先级)，目前使用的http1.1已经具有长链接  https://juejin.im/entry/5981c5df518825359a2b9476
-              * 2.域名分片（不同资源不同域名，减少cookie累赘；因为同一域名并发请求数为4个，多个域名可以增加并发请求书）
-              * 3.webpack gzip
-              * 
-              */
+/**
+ * xss和csrf攻击
+ */
+
+/**
+ * http1.0和http2.0
+ * SSL/TLS增加安全性
+ */
+
+/**
+* 状态码
+*/
+
+/**
+ * mvc/mvp/mvvm
+ */
+
+
+/**
+ * this指针问题
+ * 箭头函数中的this指向的是外层代码块中的this；而不是指向定义函数所在的对象
+ * 绑定优先级：
+ * new绑定 > 硬绑定（call/apply/bind） > 隐式绑定（obj.fn()） > 默认绑定（window）
+ */
+
+/**
+ * 主线程/微队列/宏队列
+ */
+
+/**
+* es6
+*/
+
+/**
+ * websocket
+ */
+
+/**
+ * 请求优化：
+ * 1.考虑http2.0(多路复用，header头压缩，服务端推送文件<把一些css和js文件名放请求头中，服务器根据这个主动推送css和js文件>，请求优先级)，目前使用的http1.1已经具有长链接  https://juejin.im/entry/5981c5df518825359a2b9476
+ * 2.域名分片（不同资源不同域名，减少cookie累赘；因为同一域名并发请求数为4个，多个域名可以增加并发请求书）
+ * 3.webpack gzip
+ * 
+ */
+
+
+
+
