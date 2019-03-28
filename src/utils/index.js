@@ -402,74 +402,84 @@
  * 3.props和emit（父子组件）
  * 4.router路由query
  * 5.storage
+*/
+
+
+/**
+ * 字符串常用方法和正则
+ */
+
+ /**
+  * 数组常用方法
+  */
+
+/**
+ * 圣杯布局
+ *   <style>
+.container{padding:0 220px 0 200px;}
+.middle,.left,.right{
+    position:relative;
+    float: left;
+    min-height: 300px;
+}
+.middle{background-color: red;width:100%;}
+.left{width:200px;background-color: yellow;margin-left:-100%;left:-200px;}
+.right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
+</style>
+*/
+
+
+/**
+* flex布局
+*/
+
+/**
+* 柯里化
+*/
+
+/**
+ * git reset revert
+ */
+
+/**
+ * 高阶函数性能：
+ * https://juejin.im/entry/5815876c8ac247004fb6d132
+ */
+
+/**
+ * xss和csrf攻击
+ */
+
+/**
+ * http1.1和http2.0
+ * 简单请求和非简单请求（options预检请求，非GET/HEAD/POST || 自定义请求头字段  || POST请求的content-type值为application/json）
+ * https://blog.csdn.net/z609373067/article/details/78055429
+ */
+
+/**
+* 状态码
+*/
+
+/**
+ * mvc/mvp/mvvm
  */
 
 
- /**
-  * 字符串常用方法和正则
-  */
+/**
+ * this指针问题
+ * 箭头函数中的this指向的是外层代码块中的this；而不是指向定义函数所在的对象
+ * 绑定优先级：
+ * new绑定 > 硬绑定（call/apply/bind） > 隐式绑定（obj.fn()） > 默认绑定（window）
+ */
 
-  /**
-   * 圣杯布局
-   *   <style>
-    .container{padding:0 220px 0 200px;}
-    .middle,.left,.right{
-        position:relative;
-        float: left;
-        min-height: 300px;
-    }
-    .middle{background-color: red;width:100%;}
-    .left{width:200px;background-color: yellow;margin-left:-100%;left:-200px;}
-    .right{width:220px;background-color: blue;margin-left:-220px;left:220px;}
-    </style>
-   */
+/**
+ * 主线程/微队列/宏队列
+ */
 
+/**
+* es6
+*/
 
-   /**
-    * flex布局
-    */
-
-   /**
-    * 柯里化
-    */
-
-    /**
-     * git reset revert
-     */
-
-     /**
-      * 高阶函数性能：
-      * https://juejin.im/entry/5815876c8ac247004fb6d132
-      */
-
-     /**
-      * xss和csrf攻击
-      */
-
-      /**
-       * http1.0和http2.0
-       */
-
-       /**
-        * 状态码
-        */
-
-        /**
-         * mvc/mvp/mvvm
-         */
-
-
-         /**
-          * this指针问题
-          * 箭头函数中的this指向的是外层代码块中的this；而不是指向定义函数所在的对象
-          * 绑定优先级：
-          * new绑定 > 硬绑定（call/apply/bind） > 隐式绑定（obj.fn()） > 默认绑定（window）
-          */
-
-          /**
-           * 主线程/微队列/宏队列
-           */
-
-           /**
-            * es6
-            */
+/**
+ * eslint
+ */
