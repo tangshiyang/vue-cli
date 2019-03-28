@@ -386,7 +386,7 @@
             console.log( '开始渲染百度地图' ); 
         }
     };
-    var baiduMapAdapter = { 
+    var baiduMapAdapter = {
         show: function(){
             return baiduMap.display();
         } 
@@ -404,14 +404,14 @@
  * 5.storage
 */
 
+ /**
+  * 数组常用方法
+  */
+
 
 /**
  * 字符串常用方法和正则
  */
-
- /**
-  * 数组常用方法
-  */
 
 /**
  * 圣杯布局
@@ -450,10 +450,12 @@
  * xss和csrf攻击
  */
 
+
 /**
  * http1.1和http2.0
  * 简单请求和非简单请求（options预检请求，非GET/HEAD/POST || 自定义请求头字段  || POST请求的content-type值为application/json）
  * https://blog.csdn.net/z609373067/article/details/78055429
+ * SSL/TLS增加安全性
  */
 
 /**
@@ -479,6 +481,19 @@
 /**
 * es6
 */
+
+/**
+ * websocket
+ */
+
+/**
+ * 请求优化：
+ * 1.考虑http2.0(多路复用，header头压缩，服务端推送文件<把一些css和js文件名放请求头中，服务器根据这个主动推送css和js文件>，请求优先级)，目前使用的http1.1已经具有长链接  https://juejin.im/entry/5981c5df518825359a2b9476
+ * 2.域名分片（不同资源不同域名，减少cookie累赘；因为同一域名并发请求数为4个，多个域名可以增加并发请求书）
+ * 3.webpack gzip
+ * 
+ */
+
 
 /**
  * eslint
