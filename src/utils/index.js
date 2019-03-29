@@ -459,7 +459,15 @@
  */
 
 /**
-* 状态码
+* 状态码 
+200  正确返回
+204  正确返回，但是没有返回响应体，浏览器不做任何反应
+3xx  资源重定向
+400  请求报文中有语法错误，服务器无法识别
+403  服务器拒绝请求
+404  资源未找到
+500  一般在执行后端代码时出错
+503  服务器挂了
 */
 
 /**
@@ -498,3 +506,115 @@
 /**
  * eslint
  */
+
+
+ /**
+  * 实现一个new操作符
+  */
+ (function() {
+     function New(fn) {
+        let obj = {}
+        return function() {
+            fn.call(obj,...arguments)
+            return obj
+        }
+     }
+
+     function myFun(name) {
+         this.name = name
+         this.getName = function() {
+            return this.name
+         }
+     }
+
+     let fuck = New(myFun)('fuck')
+ })()
+
+ /**
+  * 深拷贝
+  */
+ (function() {
+     function isJSON(data) {
+        return typeof data === 'object' && data !==null && data.constructor === Object
+     }
+     function isArray(data) {
+        return Object.prototype.toString.call(data) === '[object Array]'
+     }
+     function isBaseType(data) {
+        return typeof data === 'number' || typeof data === 'boolean' || typeof data === 'string'
+     }
+     function myStringify(data) {
+        let obj
+        if((isJSON(data) && (obj = {})) || (isArray(data) && (obj = []))) {
+            console.log('tag1')
+            for(let key in data) {
+                if(isJSON(data[key]) || isArray(data[key])) {
+                    obj[key] = myStringify(data[key])
+                    continue
+                }
+                if(isBaseType(obj[key]) || obj[key] === null || obj[key] === undefined) {
+                    obj[key] = data[key]
+                    continue
+                }
+            }
+        }
+        if(isBaseType(data) || data === null || data === undefined) {
+            obj = data
+        }
+        return obj
+     }
+
+     let hello = {
+         name: 'zhangsan',
+         age: 24,
+         dcri: undefined,
+         arr: [1,{'game':44}]
+     }
+
+     let copyHello = myStringify(hello)
+
+     console.log(copyHello)
+ })()
+
+ /**
+  * 实现一个call或apply
+  */
+ (function() {
+     Function.prototype.myCall = function(obj, ...args) {
+        var _self = this
+        _self.bind(obj)(...args)
+     }
+
+     function Person(name) {
+         this.name = name
+     }
+
+     let obj = {}
+
+     Person.myCall(obj,'balabara')
+
+     console.log(obj)
+ })()
+
+ /**
+  * promise
+  */
+(function() {
+    function random1To100() {
+        return Math.ceil(Math.random() * 100)
+    }
+    let p1 = new Promise(function(resolve, reject) {
+        let random = random1To100()
+        if(random > 50) {
+            resolve(random)
+        } else {
+            reject(random)
+        }
+    })
+    p1.then(function(value) {
+        console.log('成功' + value)
+        throw new Error('llllll')
+    }).catch(function(e) {
+        console.log('error', e)
+    })
+})()
