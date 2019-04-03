@@ -651,4 +651,126 @@
         c: []
     }
     console.log(instanceOf(obj, 'Object'))
+    }
+)()
+/*
+ * ajax封装
+*/
+(function() {
+    /**
+     * @description 装饰者模式
+     * @param {Function} fn 后执行函数
+     */
+    Function.prototype.after = function(fn) {
+        var self = this
+        return function() {
+            var rest = self.apply(this, arguments)
+            fn.apply(this, arguments)
+            return rest
+        }
+    }
+
+    /**
+     * @description 节流函数
+     * @param {Function} fn 需要节流的操作函数
+     */
+    var deubles = function(fn) {
+        let instance = null
+        return function() {
+            if(!instance) {
+                instance = setTimeout(function() {
+                    instance = null
+                    fn.apply(this, arguments)
+                },1000)
+            }
+        }
+    }
+
+    var log = function() {
+        console.log('')
+    }
+
+    /**
+     * @description post请求
+     * @param {Object} post请求的配置
+     * @returns {Promise}
+     * @example
+     * POST({
+     *  url: 'http://api.com',
+     *  data: {
+     *      name: 'zhangsan'
+     *  }
+     * }).then((res) => {
+     *  
+     * }).catch((err) => {
+     *  
+     * })
+     */
+    var POST = function(config) {
+        let {url, data} = config || {}
+        return new Promise((resolve, reject) => {
+            ajax({
+                url,
+                method: 'post',
+                data,
+                sussess: function(res) {
+                    resolve(res)
+                },
+                fail: function(err) {
+                    reject(err)
+                }
+            })
+        })
+    }
+
+    POST = POST.after(log)
+
+    var appendList = function(data = []) {
+        this.list.splice(this.list.length-1, 0, ...data)
+    }
+
+    var toastFail = function(e) {
+        toast(e.msg)
+    }
+
+    var state = {
+        loading: false
+    }
+
+    var getNews = function(url, data) {
+        return POST({
+            url, 
+            data
+        })
+    }
+    
+    var getMoreNews1 = (function() {
+        let loading = false
+        return function() {
+            if(loading === true) {
+                return
+            }
+            loading = true
+            POST(arguments).then((res) => {
+                loading = false
+                appendList(res.data)
+            }).catch((err) => {
+                loading = false
+                toastFail(err)
+            })
+        }  
+    })()
+
+    /**
+     * 采用双节流，至少1秒执行一次节流操作，ajax正在请求的时候不重复请求。可以用在滚动加载的场景
+     */
+    document.getElementById('id1').scroll = deubles(function() {
+        getMoreNews1.call(this, {
+            url: 'jttp://api.com',
+            data: {
+                param1: 1
+            }
+        })
+    })
+
 })()
