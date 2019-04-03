@@ -618,3 +618,37 @@
         console.log('error', e)
     })
 })()
+
+/**
+ * 实现一个instanceof
+ * @method
+ * @description 验证某个变量是否为某个类型的实例
+ * @param {*} left 需要校验的变量
+ * @param {string} right 目标类型
+ * @returns {boolean} false:不是目标类型的实例，true:是目标类型的实例
+ * @example
+ * instanceOf([], 'Array')  // 返回true
+ * instanceOf(‘hello’, 'Object')  // 返回false
+ */
+(function() {
+    function instanceOf(left, right) {
+        let proto = left.__proto__
+        let prototype = right.prototype
+        while(true) {
+            if(proto === prototype) {
+                return true
+            }
+            if(proto === null) {
+                return false
+            }
+            proto = proto.__proto__
+        }
+    }
+
+    var obj = {
+        a: 'a',
+        b: 2,
+        c: []
+    }
+    console.log(instanceOf(obj, 'Object'))
+})()
