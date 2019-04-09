@@ -1,10 +1,10 @@
 <template>
   <div class="index">
-    <h1 class="m-h1">基本应用实践</h1>
-    <router-link :to="'/booklist'" >书籍列表</router-link>
-    <router-link :to="'/login'" >登录</router-link>
-    <router-link :to="'/myinfo'" >登录后的</router-link>
-    <router-link :to="'/compDemo'" >components组件实践</router-link>
+    <h1 class="m-h1" v-if="msg.substring(6)">0</h1>
+    <router-link :to="'/booklist'" >1</router-link>
+    <router-link :to="'/login'" >2</router-link>
+    <router-link :to="'/myinfo'" >3</router-link>
+    <router-link :to="'/compDemo'" >4</router-link>
   </div>
 </template>
 
