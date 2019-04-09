@@ -803,3 +803,45 @@
 /**
  * 依赖注入
  */
+
+/**
+ * 基本数据类型转换
+ * 例如：
+ * console.log(1+undefined)   // NaN
+ * console.log('1'+undefined)   // 1undefined
+ * console.log(1+null)   // 1
+ * console.log('1'+null)   // 1null
+ * console.log(1+'1')   // 11
+ * console.log(1+{})   // 1[object Object],对象调用了toString方法
+ */
+
+ /**
+  * typeof 1   // number
+  * typeof undefined   // undefined
+  * typeof null   // object   特殊
+  * typeof function(){}   // function
+  * typeof []   // object
+  * 结论：null比较特殊，function也比较特殊
+  */
+
+ /**
+  * get post的区别
+  * 1.get没有请求体，post通过请求体传参
+  * 2.对大小的限制
+  * 3.安全性：get可能遭受csrf攻击，地址栏容易被看到重要数据，get可能被浏览器缓存，被其他人看到暴露重要信息
+  * 4.最大区别：get请求是幂等性的（同一请求具有相同的副作用），网络不好的网络隧道中容易尝试重连，多次get请求。
+  */
+
+  /**
+   * 重要的http请求头：
+   * Cache-Control：no-cache/max-age=3600  // 用来指定当前的请求/回复中的，是否使用缓存机制。
+   * Origin   //发起一个针对跨域资源共享的请求（该请求要求服务器在响应中加入一个Access-Control-Allow-Origin的消息头，表示访问控制所允许的来源）。
+   * http响应头：
+   * Access-Control-Allow-Origin： // 指定哪些网站可以跨域源资源共享
+   * Expires：  // 指定一个日期/时间，超过该时间则认为此回应已经过期
+   */
+
+   /**
+    * 跨域解决方案：
+    * 1.ngnix反向代理
+    */
