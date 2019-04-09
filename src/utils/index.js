@@ -168,6 +168,7 @@
 
 /**
  * 构造函数和原型对象
+ * 原型链的图在手机里，很直观
  */
 (function(){
  function Person(name,age){
@@ -177,13 +178,19 @@
          console.log(this.name + "say hello");
      }
  }
- var girl = new Person("bella",23);
- console.log(girl.name);  //bella
- console.log(girl.constructor === Person)  //true
+ var person = new Person("bella",23);
+ function Girl(sex){
+    this.sex = sex
+ }
+ // 继承
+ Girl.prototype = Person.prototype
+ Girl.prototype.constructor = Girl
+ console.log(person.name);  //bella
+ console.log(person.constructor === Person)  //true
  console.log(Person.prototype.constructor === Person)  //true
- console.log(girl.__proto__ === Person.prototype)  //true
- console.log(girl.__proto__.__proto__ === Object.prototype)  //true
- console.log(girl.__proto__.__proto__.__proto__ === null)  //true
+ console.log(person.__proto__ === Person.prototype)  //true
+ console.log(person.__proto__.__proto__ === Object.prototype)  //true
+ console.log(person.__proto__.__proto__.__proto__ === null)  //true
 })()
 
 /**
