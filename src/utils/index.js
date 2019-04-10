@@ -858,3 +858,71 @@
     * 2.Access-Control-Allow-Origin设置
     * 3.jsonp（只能get请求，主要用户老浏览器，不利于前后端分离）
     */
+
+
+    /**
+     * polyfill：某些浏览器不支持某些api，它填补这些缺失的api，比如某些浏览器不支持localstorage
+     * shim：是一个库，他将一个新的api引入到一个旧的环境中，它不光只正对浏览器，也包括nodejs。polyfill是shim的子集
+     * babel：只能转义es6语法，比如箭头函数。但是像promise这种新增的api只能用polyfill去做兼容
+     * 
+     */
+
+     /**
+      * 继承
+      */
+
+
+/**
+ * for of,
+ * for in,
+ * forEach,
+ * map
+ * for in循环遍历的是数组的键值(索引)，而for of循环遍历的是数组的值。
+ * for循环能打断，map和forEach不能。
+ * map返回新的数组，forEach不会
+ * @example
+ * var arr = [4,5,6]
+ * for (var key in arr) {
+ *     console.log(arr[key])
+ * }
+ * for (var item in arr) {
+ *      console.log(item)
+ * }
+ */
+
+
+ /**
+  * 类数组：不具有数组所具有的方法，比如argumemnts，dom对象列表，比如document.querySelectorAll
+  * 类数组转换成数组的方法：
+  * 1. Array.from(new Set([1,2,2]))
+  * 2. [...new Set([1,2,2])]
+  * 3. Array.prototype.slice.call([1,2,2],0)
+  */
+
+  /**
+   * == 和 ===
+   * ==是如何进行类型转换的？
+   * null,0,undefined互不相等；除null和undefined外，比较的时候都会向number类型转换再比较
+   * @example   
+   *    0 == undefined  // false
+        0 == null //false
+        undefined === null //false
+        '' == 0 // true
+        '0' == false //true
+        另外，[] == ![]
+        因为右边![] -> !true -> false -> 0, 左边[] -> 0
+   */
+
+<script>
+export default {
+  name: 'index',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+   
+  }
+}
+</script>
