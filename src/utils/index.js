@@ -910,7 +910,8 @@
         '' == 0 // true
         '0' == false //true
         另外，[] == ![]
-        因为右边![] -> !true -> false -> 0, 左边[] -> 0
+        因为右边![] -> !true -> false -> 0, 左边[] -> 0,所以 0==0
+        另外Number([]) -> 0,Number([1]) -> 1, Number([1,2]) -> NaN
    */
 
 <script>
