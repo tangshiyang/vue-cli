@@ -546,7 +546,11 @@
  })()
 
  /**
-  * 深拷贝
+  * 深拷贝和浅拷贝
+  * 浅拷贝方法：
+  * Object.assign({},{a:1})
+  * JSON.stringify // 不能复制值为undefined的变量
+  * let {...obj} = {a:1}
   */
  (function() {
      function isJSON(data) {
@@ -701,6 +705,17 @@
         }
     }
 
+    /**
+     * @description 缓存代理
+     */
+    var proxyCache = function(fn) {
+        let cache = {}
+        return function() {
+            let param = Array.prototype.join.call(arguments,'')
+            return cache[param] || (cache[param] = fn.call(this,arguments))
+        }
+    }
+
     var log = function() {
         console.log('')
     }
@@ -777,14 +792,21 @@
     })()
 
     /**
-     * 采用双节流，至少1秒执行一次节流操作，ajax正在请求的时候不重复请求。可以用在滚动加载的场景
+     * 采用三节流，至少1秒执行一次节流操作，ajax正在请求的时候不重复请求，同一个请求接口和参数只请求一次然后缓存。可以用在滚动加载的场景
      */
-    document.getElementById('id1').scroll = deubles(function() {
+
+     var xxx = function(url, data) {
         getMoreNews1.call(this, {
-            url: 'jttp://api.com',
-            data: {
-                param1: 1
-            }
+            url,
+            data
+        })
+     }
+
+     var llll = proxyCache(xxx)
+
+    document.getElementById('id1').scroll = deubles(function() {
+        llll('jttp://api.com',{
+            param1: 1
         })
     })
 
@@ -914,12 +936,19 @@
         另外Number([]) -> 0,Number([1]) -> 1, Number([1,2]) -> NaN
    */
 
+
+/**
+ * 学到了人际的沟通，比如取消一个需求怎么和产品沟通
+ * 学到了代码的规范
+ * 学到了项目管理的规范
+ */
+
 <script>
 export default {
   name: 'index',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   },
   methods: {
@@ -927,3 +956,4 @@ export default {
   }
 }
 </script>
+
