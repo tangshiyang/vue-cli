@@ -943,6 +943,17 @@
  * 学到了项目管理的规范
  */
 
+ /**
+  * 取数组的最大值
+  */
+ (function() {
+     Math.max(...[1,4,6,3])
+
+     [1,4,6,3].reduce((handle, item) => {
+        return handle = handle > item ? handle : item
+     })
+ })()
+
 <script>
 export default {
   name: 'index',
