@@ -411,6 +411,11 @@
  * 5.storage
 */
 
+
+/**
+ * vue双向绑定原理和单向数据流（看官网图）
+ */
+
  /**
   * 数组常用方法
   */
@@ -965,6 +970,34 @@
      })
  })()
 
+
+ /**
+  * css3
+  * transition: all 1s linner 1s
+  * transform: scale(1,2)
+  * animation: logo2-line 2s linear alternate infinite;
+  * @example
+  * .loading {
+  *     width: 100px;
+  *     height: 100px;
+  *     background:#898888;
+  *     animation: loading 2s linear alternate
+  * }
+  * @keyframes loading {
+  *     0%{
+  *         
+  *     }
+  *     100%{
+  *         transform: rotate(360deg)
+  *     }
+  * }
+  */
+
+/**
+ * sass
+ */
+
+
 <script>
 export default {
   name: 'index',
@@ -978,4 +1011,3 @@ export default {
   }
 }
 </script>
-
