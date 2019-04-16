@@ -84,8 +84,10 @@
 })()
 
 /**
- * 防抖与节流:
- * 防抖是将多次执行变为最后一次执行（比如搜索框，react中的setState），节流是将多次执行变为在规定时间内只执行一次（比如滚动加载）
+ * 防抖与节流与分时函数:
+ * 防抖是将多次执行变为最后一次执行（比如搜索框，react中的setState），
+ * 节流是将多次执行变为在规定时间内只执行一次（比如滚动加载）
+ * 分时：创建一个队列，使用定时器取出下一批要处理的项目进行处理，接着在设置另一个定时器。（比如列表数据太多，一次性渲染会出现卡顿，分批渲染）
  */
 
 /**
@@ -141,7 +143,7 @@
 })()
 
 /**
- * 缓存代理
+ * 缓存代理（比如搜索结果的保存）
  */
 (function() {
     let add = function() {
@@ -274,7 +276,7 @@
 })()
 
 /**
- * 发布-订阅模式（观察者模式）
+ * 发布-订阅模式
  * vue组件通信中的bus就是观察者
  */
 (function() {
@@ -335,6 +337,13 @@
         window.trigger('tip', '你好')
     })
 })()
+
+/**
+ * 发布订阅模式和观察者模式的区别
+ * 在观察者模式中，有两个角色一个是Subject，用来维护一个observer列表，另一个角色就是Observer（观察者），在Observer中定义了一个具体的update方法，用来执行相关操作。整个过程就是当某个值发生变化后，Subject调用notify方法（实际就是循环调用observerList中每个observer的update方法，并把新的值作为update的参数传递进去）。从中我们可以看出在Subject中直接调用了Observer中的方法，也就是说Subject和Observer的联系实际上是非常紧密的。
+举个例子，现在有一个房东他要租房子，当有空房子的时候，他就会去通知曾经来询问的租户，那么这个时候房东就是直接知道租客的电话和需求（要住什么样的房子）的，也就是此时房东和租客之间实际上是存在联系的。
+前面说到Subject和Observer联系是非常紧密的，因为我们要在Subject中调用Observer中的方法。那么发布订阅模式就可以解耦合，把调用的任务交给一个调度中心（中介），让调度中心去通知各个订阅者。
+ */
 
 /**
  * 装饰者模式
@@ -411,9 +420,20 @@
  * 5.storage
 */
 
+/**
+ * 实现两个窗口通信方法
+ * 1.localStorage 
+   2.postMessage 
+   3.websocket
+ */
+
 
 /**
  * vue双向绑定原理和单向数据流（看官网图）
+ * 基于数据劫持和发布订阅模式，watch是调度中心
+ * MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
+ * 
+ * vuex是单向数据流的一种实现
  */
 
  /**
@@ -484,6 +504,8 @@
 
 /**
  * mvc/mvp/mvvm
+ * mvvm手机拍照有
+ * MVC的思想：一句话描述就是Controller负责将Model的数据用View显示出来，换句话说就是在Controller里面把Model的数据赋值给View，比如在controller中写document.getElementById("box").innerHTML = data[”title”]
  */
 
 
@@ -497,9 +519,9 @@
  /**
   * 词法作用域  箭头函数
   * 全局作用域
-  * 函数作用域  
+  * 函数作用域
   * 块级作用域  let，const（这两个不像var一样有变量提升）
-  * 作用域链
+  * 作用域链：内部执行环境（作用域）能访问外部执行环境，但反过来不行。函数的调用通过入栈出栈实现，每个栈就是一个执行环境
   */
 
 /**
@@ -897,7 +919,43 @@
      */
 
      /**
-      * 继承
+      * 继承是面向对象里面的思想，javascript可以面向过程，用“借用”更合适一点
+      * 继承的方式：
+      * 1.组合继承(父类构造函数和原型链)
+      * function Cat(name){
+            Animal.call(this);
+            this.name = name || 'Tom';
+        }
+        Cat.prototype = Object.create(new Animal());
+        // Cat.prototype.constructor = Cat;
+        var cat = new Cat();
+
+        2.寄生组合继承（通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点）
+        function Cat(name){
+            Animal.call(this);
+            this.name = name || 'Tom';
+        }
+        (function(){
+            // 创建一个没有实例方法的类
+            var Super = function(){};
+            Super.prototype = Animal.prototype;
+            //将实例作为子类的原型
+            Cat.prototype = new Super();
+        })();
+
+        // Test Code
+        var cat = new Cat();
+
+        3.工厂函数
+        function Cat(name){
+            var instance = new Animal();
+            instance.name = name || 'Tom';
+            return instance;
+        }
+        // Test Code
+        var cat = new Cat();
+
+        4.class
       */
 
 
