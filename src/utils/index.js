@@ -887,7 +887,8 @@
   * 1.get没有请求体，post通过请求体传参
   * 2.对大小的限制
   * 3.安全性：get可能遭受csrf攻击，地址栏容易被看到重要数据，get可能被浏览器缓存，被其他人看到暴露重要信息
-  * 4.最大区别：get请求是幂等性的（同一请求具有相同的副作用），网络不好的网络隧道中容易尝试重连，多次get请求。
+  * 4.get可以被缓存，post不可以
+  * 5.最大区别：get请求是幂等性的（同一请求具有相同的副作用），网络不好的网络隧道中容易尝试重连，多次get请求。
   */
 
   /**
@@ -1056,16 +1057,17 @@
  */
 
 
-<script>
-export default {
-  name: 'index',
-  data () {
-    return {
-      msg: ''
-    }
-  },
-  methods: {
-   
-  }
+ /**
+  * 算法题
+  */
+ 
+/**
+ * 二分算法
+ * @param {Array} arr 有序数列
+ * @param {Number} ele 被查找的元素
+ * @returns {Number} 位置
+*/
+var arr = [2,4,7,9,12,67,121], ele = 67
+function erfen(arr, ele) {
+    var arr.length/2
 }
-</script>
