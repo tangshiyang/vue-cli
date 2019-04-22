@@ -1056,18 +1056,14 @@
  * sass
  */
 
+ /**
+  * 事件机制
+  * https://www.jianshu.com/p/916230ad9229
+  */
+
 
  /**
   * 算法题
+  * 插入排序，冒泡排序，快速排序
   */
  
-/**
- * 二分算法
- * @param {Array} arr 有序数列
- * @param {Number} ele 被查找的元素
- * @returns {Number} 位置
-*/
-var arr = [2,4,7,9,12,67,121], ele = 67
-function erfen(arr, ele) {
-    var arr.length/2
-}
