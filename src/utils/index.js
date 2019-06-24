@@ -994,7 +994,7 @@
    * @example   
    *    0 == undefined  // false
         0 == null //false
-        undefined === null //false
+        undefined == null //true
         '' == 0 // true
         '0' == false //true
         另外，[] == ![]
