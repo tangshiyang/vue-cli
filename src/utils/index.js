@@ -430,8 +430,11 @@
 
 /**
  * 实现两个窗口通信方法
- * 1.localStorage 
-   2.postMessage 
+ * 1.localStorage ：首先它是不能跨域的。
+ * window.addEventListener("storage",function(event){
+        console.log("key is"+event.newValue);
+    },false);    
+   2.postMessage ：窗口和iframe之间的通信，或同源的两个窗口。不同源的2个tab窗口还是不能跨域通信
    3.websocket
  */
 
@@ -440,8 +443,10 @@
  * vue双向绑定原理和单向数据流（看官网图）
  * 基于数据劫持和发布订阅模式，watch是调度中心
  * MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
- * 
+ * 计算属性缓存 vs 方法:计算属性是基于它们的响应式依赖进行缓存的
+ * 计算属性 vs 侦听属性:1.如果一个数据依赖多个其他数据，计算属性只要写一次，侦听属性要写多次。2.
  * vuex是单向数据流的一种实现
+ * vue继承：mixins，Vue.extend
  */
 
  /**
@@ -451,6 +456,10 @@
 
 /**
  * 字符串常用方法和正则
+ */
+
+ /**
+ * 事件捕获和冒泡
  */
 
 /**
