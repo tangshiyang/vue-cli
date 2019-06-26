@@ -456,6 +456,20 @@
 
 /**
  * 字符串常用方法和正则
+ * slice(1,5):从下标1开始，截取到第4个
+ * substring(1,5):从下标1开始，截取到第4个
+ * substr(1,5):从下标1开始，截取5个
+ * 
+ * 正则：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions
+ * 字符串：
+ * var str = 'yuoiew789ewrewrhewkjhjkere'
+ * 1.str.match(/e/) =>  ["e", "e", "e", "e", "e", "e"]
+ * 2.str.search(/e/) => 4
+ * 3.replace
+ * RegExp:
+ * 1.   /e/.test("The best things in life are free!")  =>  true
+   2.     /e/.exec("The best things in life are free!")  =>  ["e", index: 2, input: "The best things in life are free!", groups: undefined]
+
  */
 
  /**
@@ -497,6 +511,7 @@
 
 /**
  * xss和csrf攻击
+ * 防御XSS：httpOnly，输入过滤，转义 HTML
  */
 
 
@@ -838,7 +853,12 @@
     })()
 
     /**
-     * 采用三节流，至少1秒执行一次节流操作，ajax正在请求的时候不重复请求，同一个请求接口和参数只请求一次然后缓存。可以用在滚动加载的场景
+     * 采用四节流，
+     * 1.至少1秒执行一次节流操作(节流函数)
+     * 2.ajax正在请求的时候不重复请求（通过一个loading变量控制）
+     * 3.同一个请求接口和参数只请求一次然后缓存(缓存代理)。
+     * 4.获取到的列表分批渲染（分时函数）
+     * 可以用在滚动加载的场景
      */
 
      var xxx = function(url, data) {
@@ -860,6 +880,9 @@
 
 /**
  * cookies/localStorage/sessionStorage/indexDB
+ * 注意：sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。并不是浏览器关闭后才消失
+
+
  */
 
  /**
@@ -902,7 +925,7 @@
  /**
   * get post的区别
   * 1.get没有请求体，post通过请求体传参
-  * 2.对大小的限制
+  * 2.对大小的限制（GET方式提交的数据有长度限制，则POST的数据则可以非常大）
   * 3.安全性：get可能遭受csrf攻击，地址栏容易被看到重要数据，get可能被浏览器缓存，被其他人看到暴露重要信息
   * 4.get可以被缓存，post不可以
   * 5.最大区别：get请求是幂等性的（同一请求具有相同的副作用），网络不好的网络隧道中容易尝试重连，多次get请求。
