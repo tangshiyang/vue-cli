@@ -493,6 +493,55 @@
 
 
 /**
+* 垂直水平居中的几种方法：
+*/
+// 1.第一种
+// .outer{
+//     width: 600px;
+//     height: 400px;
+//     position: relative;
+//     background: #766544;
+// }
+// .inner{
+//     width: 100px;
+//     height: 50px;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     margin: auto;
+//     position: absolute;
+//     background: #909876;
+// }
+// 2.第二种
+// .outer{
+//     width: 600px;
+//     height: 400px;
+//     position: relative;
+//     background: #766544;
+// }
+// .inner{
+//     width: 100px;
+//     height: 50px;
+//     top: 50%;
+//     left: 50%;
+//     position: absolute;
+//     transform:translate(-50%,-50%)
+// }
+// 3.第三种
+// div{
+//     width: 260px;
+//     height: 230px;
+//     border: 3px solid #555;
+//     display: table-cell;
+//     vertical-align: middle;
+//     text-align: center;
+// }
+// img{
+//     vertical-align: middle;
+// }
+
+/**
 * flex布局
 */
 
@@ -512,6 +561,7 @@
 /**
  * xss和csrf攻击
  * 防御XSS：httpOnly，输入过滤，转义 HTML
+ * 目前防御 CSRF 攻击主要有三种策略：验证 HTTP Referer 字段；在请求地址中添加 token 并验证；在 HTTP 头中自定义属性并验证。
  */
 
 
@@ -967,6 +1017,7 @@
             Animal.call(this);
             this.name = name || 'Tom';
         }
+
         Cat.prototype = Object.create(new Animal());
         // Cat.prototype.constructor = Cat;
         var cat = new Cat();
@@ -1030,7 +1081,7 @@
   /**
    * == 和 ===
    * ==是如何进行类型转换的？
-   * null,0,undefined互不相等；除null和undefined外，比较的时候都会向number类型转换再比较
+   * 除null和undefined外，比较的时候都会向number类型转换再比较
    * @example   
    *    0 == undefined  // false
         0 == null //false
@@ -1111,3 +1162,8 @@
   * 插入排序，冒泡排序，快速排序,选择排序
   */
  
+
+  /** 
+   * 回流与重绘
+   * https://juejin.im/post/5a9923e9518825558251c96a
+   */
