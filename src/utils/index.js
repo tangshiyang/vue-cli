@@ -1180,3 +1180,8 @@
     */
 
 
+/**
+ * cookie跨域携带方法
+ * 方法一：通过配置ajax请求头'withCredentials'为true，以及后台配置('Access-Control-Allow-Origin','IP端口'）和('Access-Control-Allow-Credentials',true)
+ * 方法二：通过配置代理，利用服务器和服务器之间不存在跨域的特性，达到cookie的跨域携带，以及解决跨域请求
+ */
